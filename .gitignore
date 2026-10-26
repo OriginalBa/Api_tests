@@ -1,0 +1,13 @@
+# Среда разработки IntelliJ / PyCharm / WebStorm
+.idea/
+.caches/
+
+# Кэш Python и pytest
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Виртуальное окружение (если используешь)
+venv/
+.venv/
+env/

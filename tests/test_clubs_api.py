@@ -1,7 +1,7 @@
 import requests
 import pytest
 from jsonschema import validate
-from schema.club_schemas import clubs_list_schema, club_schema, review_schema
+from schema.club_schemas import success_create_club, success_clubs_list, success_review_schema
 
 BASE_URL = "https://book-club.qa.guru/api/v1"
 
@@ -12,7 +12,7 @@ def test_1_clubs_list_schema_validation():
 
     response_json = response.json()
 
-    validate(instance=response_json, schema=clubs_list_schema)
+    validate(instance=response_json, schema=success_clubs_list)
 
 
 def test_2_single_club_schema_validation():
@@ -30,7 +30,7 @@ def test_2_single_club_schema_validation():
 
     response_json = response.json()
 
-    validate(instance=response_json, schema=club_schema)
+    validate(instance=response_json, schema=success_create_club)
 
 
 def test_3_all_embedded_reviews_schema_validation():
@@ -42,7 +42,7 @@ def test_3_all_embedded_reviews_schema_validation():
     review_checked = False
     for club in clubs:
         for review in club.get("reviews", []):
-            validate(instance=review, schema=review_schema)
+            validate(instance=review, schema=success_review_schema)
             review_checked = True
 
     if not review_checked:
